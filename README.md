@@ -12,6 +12,8 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 /plugin marketplace add ahmadabdalla/plugins
 ```
 
+> Adding the repo `ahmadabdalla/plugins` registers the marketplace under its manifest name **`ahmadabdalla-plugins`**. Use the manifest name for all subsequent commands (`install`, `update`, `remove`).
+
 ### Install a plugin
 
 **GitHub Copilot CLI:**
