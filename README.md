@@ -1,6 +1,6 @@
 # ahmadabdalla/plugins
 
-Centralized [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin marketplace for all **ahmadabdalla** plugins.
+Centralized plugin marketplace for all **ahmadabdalla** plugins. Works with both [GitHub Copilot CLI](https://docs.github.com/en/copilot/reference/cli-plugin-reference) and [Claude Code](https://code.claude.com/docs/en/plugin-marketplaces).
 
 Plugins are hosted in their own dedicated repositories and referenced here via the `github` source type so that this marketplace acts as a single discovery point.
 
@@ -14,15 +14,42 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 ### Install a plugin
 
+**GitHub Copilot CLI:**
+
+```
+/plugin install azure-cost-calculator
+```
+
+**Claude Code:**
+
 ```
 /plugin install azure-cost-calculator@ahmadabdalla-plugins
 ```
 
-### Update the marketplace
+### Marketplace commands
 
-```
-/plugin marketplace update ahmadabdalla-plugins
-```
+#### GitHub Copilot CLI
+
+| Action | Command |
+| --- | --- |
+| Add | `/plugin marketplace add ahmadabdalla/plugins` |
+| List | `/plugin marketplace list` |
+| Remove | `/plugin marketplace remove ahmadabdalla-plugins` |
+
+> When **adding** a marketplace you use `OWNER/REPO`. When **removing** you use the marketplace **name** (as shown in the list).
+
+#### Claude Code
+
+| Action | Command |
+| --- | --- |
+| Add | `/plugin marketplace add ahmadabdalla/plugins` |
+| List | `/plugin marketplace list` |
+| Update | `/plugin marketplace update ahmadabdalla-plugins` |
+| Remove | `/plugin marketplace remove ahmadabdalla-plugins` |
+
+> Use `add` / `remove` for **marketplaces**. Use `install` / `uninstall` for **plugins**. The verbs are not interchangeable.
+>
+> **Shortcuts:** `/plugin market` works in place of `/plugin marketplace`. `rm` works in place of `remove`.
 
 ## Available plugins
 
