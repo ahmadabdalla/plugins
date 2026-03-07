@@ -1,0 +1,31 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ahmadabdalla-plugins",
+  "owner": {
+    "name": "ahmadabdalla"
+  },
+  "metadata": {
+    "description": "Centralized marketplace for ahmadabdalla plugins",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "azure-cost-calculator",
+      "source": {
+        "source": "github",
+        "repo": "ahmadabdalla/azure-cost-calculator",
+        "ref": "v1.2.3"
+      },
+      "description": "Real-time Azure cost estimation using the Azure Retail Prices API",
+      "version": "1.2.3",
+      "author": {
+        "name": "ahmadabdalla"
+      },
+      "category": "cloud",
+      "keywords": ["azure", "pricing", "cost", "estimation", "cloud", "budget", "calculator"],
+      "license": "MIT",
+      "homepage": "https://github.com/ahmadabdalla/azure-cost-calculator",
+      "repository": "https://github.com/ahmadabdalla/azure-cost-calculator"
+    }
+  ]
+}
