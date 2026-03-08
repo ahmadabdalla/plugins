@@ -30,7 +30,8 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 ## Marketplace commands
 
-### GitHub Copilot CLI
+<details>
+<summary><strong>GitHub Copilot CLI</strong></summary>
 
 | Action | Command                                          |
 | ------ | ------------------------------------------------ |
@@ -40,7 +41,10 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 > When **adding** a marketplace you use `OWNER/REPO`. When **removing** you use the marketplace **name** (as shown in the list).
 
-### Claude Code
+</details>
+
+<details>
+<summary><strong>Claude Code</strong></summary>
 
 > Claude Code uses the `name@marketplace` format for plugin commands. Direct install from GitHub (without a marketplace) is **not supported**.
 
@@ -55,6 +59,8 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 > Use `add` / `remove` for **marketplaces**. Use `install` / `uninstall` for **plugins**. The verbs are not interchangeable — `uninstall` silently fails on marketplaces.
 
+</details>
+
 ## Available plugins
 
 | Plugin                                                                         | Description                                                    | Version |
@@ -63,12 +69,7 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 ## Versioning & update strategy
 
-Each plugin entry in `.claude-plugin/marketplace.json` is pinned to a specific Git tag (`ref`) in the plugin's repository. When a plugin repository cuts a new release:
-
-1. A pull request is opened against this repository (manually or via a GitHub Action in the plugin repo) to bump the `version` and `ref` fields.
-2. After review and merge, users pick up the change the next time they run `/plugin marketplace update ahmadabdalla-plugins`.
-
-This keeps the marketplace stable — users always get a known-good version — while still allowing rapid updates when new releases are published.
+Each plugin entry in `.claude-plugin/marketplace.json` is pinned to a specific Git tag (`ref`) in the plugin's repository. When a plugin repository cuts a new release, the `version` and `ref` fields in this marketplace are updated to match.
 
 ## License
 
