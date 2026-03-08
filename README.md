@@ -2,7 +2,7 @@
 
 Centralized plugin marketplace for all **ahmadabdalla** plugins. Works with both [GitHub Copilot CLI](https://docs.github.com/en/copilot/reference/cli-plugin-reference) and [Claude Code](https://code.claude.com/docs/en/plugin-marketplaces).
 
-Plugins are hosted in their own dedicated repositories and referenced here via the `github` source type so that this marketplace acts as a single discovery point.
+Plugins are hosted in their own dedicated repositories and referenced here via the `url` source type (with explicit HTTPS URLs) so that this marketplace acts as a single discovery point.
 
 ## Quick start
 

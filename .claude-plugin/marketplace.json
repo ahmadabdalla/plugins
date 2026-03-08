@@ -12,8 +12,8 @@
     {
       "name": "azure-cost-calculator",
       "source": {
-        "source": "github",
-        "repo": "ahmadabdalla/azure-cost-calculator",
+        "source": "url",
+        "url": "https://github.com/ahmadabdalla/azure-cost-calculator.git",
         "ref": "v1.2.3"
       },
       "description": "Real-time Azure cost estimation using the Azure Retail Prices API",
