@@ -65,7 +65,7 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 
 | Plugin                                                                         | Description                                                    | Version |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------- |
-| [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.7.0   |
+| [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.7.1   |
 
 ## Versioning & update strategy
 
