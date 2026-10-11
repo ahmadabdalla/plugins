@@ -88,7 +88,7 @@ The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Re
 | [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.10.2  |
 | [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Work System: playbooks, specialist skills, and verification | 0.1.0 |
 
-aasystem's initial version is prepared for installation testing. Full workflow validation is still in progress; see its [preparation plan](https://github.com/ahmadabdalla/aasystem/blob/main/PLUGIN_PLAN.md).
+aasystem installation has been verified in all three hosts. Full workflow validation remains pending.
 
 ## Versioning & update strategy
 
