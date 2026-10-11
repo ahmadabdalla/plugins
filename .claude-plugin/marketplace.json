@@ -32,10 +32,10 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ahmadabdalla/aasystem.git",
-        "sha": "48a7e7b0bfd2a4b47c7cae9204f340b34711c58d"
+        "ref": "v0.2.0"
       },
       "description": "Ahmad Abdalla's Pilot System: coordinate engineering tasks through playbooks, specialist skills, and verification",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Ahmad Abdalla"
       },

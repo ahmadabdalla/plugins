@@ -31,7 +31,7 @@ copilot plugin marketplace add ahmadabdalla/plugins
 copilot plugin install aasystem@ahmadabdalla-plugins
 ```
 
-Run `/skills` in Copilot to inspect the installed skills.
+Run `/skills` in Copilot to inspect the installed skills, then use `/aapilot` to start a task.
 
 The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Replace `aasystem` with `azure-cost-calculator` to install that plugin instead. If the marketplace is already registered, refresh it before installing a newly listed plugin.
 
@@ -86,31 +86,48 @@ The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Re
 | Plugin                                                                         | Description                                                    | Version |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------- |
 | [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.10.2  |
-| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.1.0 |
+| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.2.0 |
 
-The original aasystem installation was verified in all three hosts. The temporary aapilot pin needs fresh installation and upgrade checks; full workflow validation remains pending.
+## Release updates
 
-## Versioning & update strategy
+The catalog pins published release tags. To adopt a new release, update its `source.ref` and `version` together in `.claude-plugin/marketplace.json`, then open a reviewed PR. Keep installation names unchanged and never move a published tag.
 
-One catalog, `.claude-plugin/marketplace.json`, serves all three hosts. Each plugin entry is pinned to a release tag (`ref`) or an exact commit (`sha`) in its own repository. aasystem temporarily pins the merged aapilot commit, `48a7e7b0bfd2a4b47c7cae9204f340b34711c58d`, while its [versioned release process](https://github.com/ahmadabdalla/aasystem/issues/2) and [marketplace release adoption](https://github.com/ahmadabdalla/plugins/issues/38) are implemented.
+Before opening the PR, run the catalog check. It requires Python 3 and GitHub CLI (`gh`):
 
-When a plugin cuts a tested release, update its catalog `version` and source selector together. Keep existing release tags immutable.
+```bash
+python3 scripts/validate-marketplace.py
+```
 
-### Temporary aasystem update
+The check resolves each tag, confirms the release exists and compares upstream manifest versions. Installation and upgrades need separate host checks.
 
-The [temporary SHA update](https://github.com/ahmadabdalla/plugins/issues/39) keeps version `0.1.0` aligned with the upstream manifests. This is a bridge to the versioned release, not a new release. An unchanged manifest version can leave users on cached contents, so a marketplace refresh alone does not establish that the plugin updated.
+## Upgrade aasystem
 
-For an existing Codex installation, refresh this marketplace and reinstall only aasystem:
+Refresh the marketplace, update the installed plugin, then start a fresh session. The old `$aasystem:aasystem` and `/aasystem:aasystem` entry points are now `$aasystem:aapilot` and `/aasystem:aapilot`; there is no old-name alias.
+
+For Codex, refresh and reinstall:
 
 ```bash
 codex plugin marketplace upgrade ahmadabdalla-plugins
 codex plugin remove aasystem@ahmadabdalla-plugins
 codex plugin add aasystem@ahmadabdalla-plugins
+codex plugin list --marketplace ahmadabdalla-plugins --json
 ```
 
-Start a fresh Codex conversation and select `$aasystem:aapilot`. The new entry point should appear in the installed skills; `$aasystem:aasystem` is the old entry point.
+For Claude Code:
 
-Claude Code and Copilot also provide marketplace refresh and plugin uninstall/install commands, but their same-version reinstall paths for this temporary pin remain unverified. Ordinary or background update must not be assumed to replace cached contents. The permanent release will bump the upstream manifest versions and replace this SHA with a release tag.
+```bash
+claude plugin marketplace update ahmadabdalla-plugins
+claude plugin update aasystem@ahmadabdalla-plugins
+```
+
+For Copilot CLI:
+
+```bash
+copilot plugin marketplace update ahmadabdalla-plugins
+copilot plugin update aasystem@ahmadabdalla-plugins
+```
+
+Confirm version `0.2.0`, source tag `v0.2.0` and a read-only `aapilot` invocation. Host test results and any gaps are recorded in the adoption PR; command help alone is not upgrade proof.
 
 ## License
 
