@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Centralized marketplace for ahmadabdalla plugins",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -26,6 +26,24 @@
       "license": "MIT",
       "homepage": "https://github.com/ahmadabdalla/azure-cost-calculator",
       "repository": "https://github.com/ahmadabdalla/azure-cost-calculator"
+    },
+    {
+      "name": "aasystem",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ahmadabdalla/aasystem.git",
+        "sha": "e8fff0e673292aa4ad37d257d725836c82660b02"
+      },
+      "description": "Ahmad Abdalla's Work System: coordinate engineering tasks through playbooks, specialist skills, and verification",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ahmad Abdalla"
+      },
+      "category": "productivity",
+      "keywords": ["engineering", "planning", "verification", "skills"],
+      "license": "MIT",
+      "homepage": "https://github.com/ahmadabdalla/aasystem",
+      "repository": "https://github.com/ahmadabdalla/aasystem"
     }
   ]
 }

@@ -1,34 +1,53 @@
 # ahmadabdalla/plugins
 
-Centralized plugin marketplace for all **ahmadabdalla** plugins. Works with both [GitHub Copilot CLI](https://docs.github.com/en/copilot/reference/cli-plugin-reference) and [Claude Code](https://code.claude.com/docs/en/plugin-marketplaces).
+Centralized plugin marketplace for all **ahmadabdalla** plugins. Works with [Codex CLI](https://developers.openai.com/plugins/build/plugins), [Claude Code](https://code.claude.com/docs/en/plugin-marketplaces), and [GitHub Copilot CLI](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference).
 
 Plugins are hosted in their own dedicated repositories and referenced here via the `url` source type (with explicit HTTPS URLs) so that this marketplace acts as a single discovery point.
 
 ## Quick start
 
-### Add the marketplace
+### Codex CLI
 
-```text
-/plugin marketplace add ahmadabdalla/plugins
+```bash
+codex plugin marketplace add ahmadabdalla/plugins
+codex plugin add aasystem@ahmadabdalla-plugins
 ```
 
-> Adding the repo `ahmadabdalla/plugins` registers the marketplace under its manifest name **`ahmadabdalla-plugins`**. Use the manifest name for all subsequent commands (`install`, `update`, `remove`).
+Start a task with `$aasystem:aasystem`, or select a specialist such as `$aasystem:product`.
 
-### Install a plugin
+### Claude Code
 
-**GitHub Copilot CLI:**
-
-```text
-/plugin install <plugin-name>
+```bash
+claude plugin marketplace add ahmadabdalla/plugins
+claude plugin install aasystem@ahmadabdalla-plugins
 ```
 
-**Claude Code:**
+Start a task with `/aasystem:aasystem`, or select a specialist such as `/aasystem:product`.
 
-```text
-/plugin install <plugin-name>@ahmadabdalla-plugins
+### GitHub Copilot CLI
+
+```bash
+copilot plugin marketplace add ahmadabdalla/plugins
+copilot plugin install aasystem@ahmadabdalla-plugins
 ```
+
+Run `/skills` in Copilot to inspect the installed skills.
+
+The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Replace `aasystem` with `azure-cost-calculator` to install that plugin instead. If the marketplace is already registered, refresh it before installing a newly listed plugin.
 
 ## Marketplace commands
+
+<details>
+<summary><strong>Codex CLI</strong></summary>
+
+| Action | Command |
+| --- | --- |
+| Add | `codex plugin marketplace add ahmadabdalla/plugins` |
+| List | `codex plugin marketplace list` |
+| Refresh | `codex plugin marketplace upgrade` |
+| Remove | `codex plugin marketplace remove ahmadabdalla-plugins` |
+
+</details>
 
 <details>
 <summary><strong>GitHub Copilot CLI</strong></summary>
@@ -37,6 +56,7 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 | ------ | ------------------------------------------------ |
 | Add    | `/plugin marketplace add ahmadabdalla/plugins`   |
 | List   | `/plugin marketplace list`                       |
+| Update | `/plugin marketplace update ahmadabdalla-plugins` |
 | Remove | `/plugin marketplace remove ahmadabdalla-plugins` |
 
 > When **adding** a marketplace you use `OWNER/REPO`. When **removing** you use the marketplace **name** (as shown in the list).
@@ -66,10 +86,15 @@ Plugins are hosted in their own dedicated repositories and referenced here via t
 | Plugin                                                                         | Description                                                    | Version |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------- |
 | [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.10.2  |
+| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Work System: playbooks, specialist skills, and verification | 0.1.0 |
+
+aasystem's initial version is prepared for installation testing. Full workflow validation is still in progress; see its [preparation plan](https://github.com/ahmadabdalla/aasystem/blob/main/PLUGIN_PLAN.md).
 
 ## Versioning & update strategy
 
-Each plugin entry in `.claude-plugin/marketplace.json` is pinned to a specific Git tag (`ref`) in the plugin's repository. When a plugin repository cuts a new release, the `version` and `ref` fields in this marketplace are updated to match.
+One catalog, `.claude-plugin/marketplace.json`, serves all three hosts. Each plugin entry is pinned to a release tag (`ref`) or an exact commit (`sha`) in its own repository. aasystem initially uses its published root commit for reproducible installation tests.
+
+When a plugin cuts a tested release, update its catalog `version` and source selector together. Keep existing release tags immutable.
 
 ## License
 
