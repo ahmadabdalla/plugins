@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the catalog against published GitHub tags. Requires Python 3 and gh."""
+import argparse
 import base64
 import json
 from pathlib import Path
@@ -17,15 +18,19 @@ def check(condition, message):
         raise ValueError(message)
 
 
-def validate(catalog):
+def validate(catalog, previous=None):
     check(catalog["name"] == "ahmadabdalla-plugins", "Marketplace identity changed")
     plugins = catalog["plugins"]
     names = [plugin["name"] for plugin in plugins]
     check(len(names) == len(set(names)), "Duplicate plugin entries")
     check(bool(plugins), "Empty catalog")
+    versions = {plugin["name"]: plugin["version"] for plugin in previous["plugins"]} if previous else {}
     for plugin in plugins:
         name, version, source = plugin["name"], plugin["version"], plugin["source"]
         check(re.fullmatch(r"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)", version), f"{name}: invalid version")
+        if name in versions:
+            check(tuple(map(int, version.split("."))) >= tuple(map(int, versions[name].split("."))),
+                  f"{name}: catalog version must not decrease")
         check(source["source"] == "url" and "sha" not in source, f"{name}: use one release ref, without sha")
         check(source["ref"] == f"v{version}", f"{name}: ref and version differ")
         match = re.fullmatch(r"https://github\.com/([\w.-]+/[\w.-]+)\.git", source["url"])
@@ -52,8 +57,16 @@ def validate(catalog):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--base", help="Git ref whose catalog versions must not decrease")
+    args = parser.parse_args()
     path = Path(__file__).resolve().parents[1] / ".claude-plugin/marketplace.json"
     try:
-        validate(json.loads(path.read_text()))
+        previous = None
+        if args.base:
+            previous = json.loads(subprocess.check_output(
+                ["git", "show", f"{args.base}:.claude-plugin/marketplace.json"], cwd=path.parents[1], text=True))
+        validate(json.loads(path.read_text()), previous)
     except (ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
         sys.exit(f"FAIL: {error}")
+
