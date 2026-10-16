@@ -100,6 +100,10 @@ python3 scripts/validate-marketplace.py
 
 The check resolves each tag, confirms the release exists and compares upstream manifest versions. Installation and upgrades need separate host checks.
 
+Successful aasystem publication automatically opens or updates one reviewed PR on `automation/aasystem-release`. It includes the release, exact commit and catalog validation results. Merge it after review and available host checks. Setup and retry instructions live in [aasystem's release guide](https://github.com/ahmadabdalla/aasystem/blob/main/docs/ops/releasing.md#marketplace-automation-setup).
+
+PR CI also rejects catalog version downgrades. Require the `validate` check with branches up to date before merging so a stale PR cannot undo a newer adoption.
+
 ## Upgrade aasystem
 
 Refresh the marketplace, update the installed plugin, then start a fresh session. The old `$aasystem:aasystem` and `/aasystem:aasystem` entry points are now `$aasystem:aapilot` and `/aasystem:aapilot`; there is no old-name alias.
@@ -127,8 +131,9 @@ copilot plugin marketplace update ahmadabdalla-plugins
 copilot plugin update aasystem@ahmadabdalla-plugins
 ```
 
-Confirm version `0.3.0`, source tag `v0.3.0` and a read-only `aapilot` invocation. Host test results and any gaps are recorded in the adoption PR; command help alone is not upgrade proof.
+Confirm the installed version and source tag match the aasystem catalog entry, then try a read-only `aapilot` invocation. Host test results and any gaps are recorded in the adoption PR; command help alone is not upgrade proof.
 
 ## License
 
 [MIT](LICENSE)
+
