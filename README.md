@@ -86,7 +86,7 @@ The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Re
 | Plugin                                                                         | Description                                                    | Version |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------- |
 | [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.10.2  |
-| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.7.1 |
+| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.8.0 |
 
 ## Release updates
 
