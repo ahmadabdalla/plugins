@@ -52,7 +52,8 @@ def validate(catalog, previous=None):
             check(manifest["name"] == name and manifest["version"] == version,
                   f"{name}: {path} identity/version differs from catalog")
         if name == "aasystem":
-            github(f"repos/{repo}/contents/skills/aapilot/SKILL.md?ref={commit}")
+            entry = "pilot" if tuple(map(int, version.split("."))) >= (0, 8, 0) else "aapilot"
+            github(f"repos/{repo}/contents/skills/{entry}/SKILL.md?ref={commit}")
         print(f"PASS: {name} {version} → {tag} → {commit}")
 
 
