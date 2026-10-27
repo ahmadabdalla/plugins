@@ -13,7 +13,7 @@ codex plugin marketplace add ahmadabdalla/plugins
 codex plugin add aasystem@ahmadabdalla-plugins
 ```
 
-Start a task with `$aasystem:aapilot`, or select a specialist such as `$aasystem:product`.
+Start a task with `$aasystem:pilot`, or select a specialist such as `$aasystem:product`.
 
 ### Claude Code
 
@@ -22,7 +22,7 @@ claude plugin marketplace add ahmadabdalla/plugins
 claude plugin install aasystem@ahmadabdalla-plugins
 ```
 
-Start a task with `/aasystem:aapilot`, or select a specialist such as `/aasystem:product`.
+Start a task with `/aasystem:pilot`, or select a specialist such as `/aasystem:product`.
 
 ### GitHub Copilot CLI
 
@@ -31,7 +31,7 @@ copilot plugin marketplace add ahmadabdalla/plugins
 copilot plugin install aasystem@ahmadabdalla-plugins
 ```
 
-Run `/skills` in Copilot to inspect the installed skills, then use `/aapilot` to start a task.
+Run `/skills` in Copilot to inspect the installed skills, then use `/pilot` to start a task.
 
 The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Replace `aasystem` with `azure-cost-calculator` to install that plugin instead. If the marketplace is already registered, refresh it before installing a newly listed plugin.
 
@@ -86,7 +86,7 @@ The repository registers as **`ahmadabdalla-plugins`**. Add it once per host. Re
 | Plugin                                                                         | Description                                                    | Version |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------- |
 | [azure-cost-calculator](https://github.com/ahmadabdalla/azure-cost-calculator) | Real-time Azure cost estimation using the Azure Retail Prices API | 1.10.2  |
-| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.7.1 |
+| [aasystem](https://github.com/ahmadabdalla/aasystem) | Ahmad Abdalla's Pilot System: playbooks, specialist skills, and verification | 0.8.0 |
 
 ## Release updates
 
@@ -106,7 +106,7 @@ PR CI also rejects catalog version downgrades. Require the `validate` check with
 
 ## Upgrade aasystem
 
-Refresh the marketplace, update the installed plugin, then start a fresh session. The old `$aasystem:aasystem` and `/aasystem:aasystem` entry points are now `$aasystem:aapilot` and `/aasystem:aapilot`; there is no old-name alias.
+Refresh the marketplace, update the installed plugin, then start a fresh session. As of v0.8.0, use `$aasystem:pilot` in Codex and `/aasystem:pilot` in Claude Code. Earlier `aapilot` and `aasystem` entry names have no compatibility alias. Optional Codex hook users must regenerate and trust configuration pointing to `skills/pilot/scripts/orchestration.py`, preserving their existing state directory. Follow the [migration guide](https://github.com/ahmadabdalla/aasystem/blob/v0.8.0/docs/ops/releasing.md#upgrade-from-aapilot-to-pilot).
 
 For Codex, refresh and reinstall:
 
@@ -131,7 +131,7 @@ copilot plugin marketplace update ahmadabdalla-plugins
 copilot plugin update aasystem@ahmadabdalla-plugins
 ```
 
-Confirm the installed version and source tag match the aasystem catalog entry, then try a read-only `aapilot` invocation. Host test results and any gaps are recorded in the adoption PR; command help alone is not upgrade proof.
+Confirm the installed version and source tag match the aasystem catalog entry, then try a read-only `pilot` invocation. Host test results and any gaps are recorded in the adoption PR; command help alone is not upgrade proof.
 
 ## License
 
